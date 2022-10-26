@@ -9,6 +9,7 @@ export default function Button() {
   const [title, setTitle] = useState(false);
   const [charArr, setCharArr] = useState([]);
   const [totalHeight, setTotalHeight] = useState(0);
+  const [movieName, setMovieName] = useState("");
   const [show, setShow] = useState(false);
 
     
@@ -26,19 +27,18 @@ export default function Button() {
     
     if (title === false) {
       setTitle(true);
-    } else setTitle(false);
+    } else {setTitle(false)};
+if (info === true) {
+      setInfo(false);
+    }
+
   }
 
 
-console.log(result)
-  
-  // const filterClick = () => {
-  // setTitle((prevTitle))
-  // }
   
   
-  const infoClick = (movieTitle, characters) => {
-    // setTitle((prevEvent) => {
+  const infoClick = (movieTitle, characters, gender) => {
+    // setResuot((prevEvent) => {
     //   return title.filter((title) => {
     //     return movieTitle !== title;
     //   })
@@ -50,9 +50,15 @@ console.log(result)
   
         handleClick()
         setInfo(true);
+        setTitle(false);
+        console.log(charArr);
+
+        // result.filter((event) => {
+        //   return movieTitle !== event.title
+        // })
+        
       });
     });
-
   };
 
 
@@ -74,6 +80,7 @@ console.log(result)
                 {result ? (
                   result?.map((item, i) => (
                     <li
+                      className='drop'
                       key={item.title}
                       onClick={() => infoClick(item.title, item.characters)}
                     >
@@ -85,7 +92,9 @@ console.log(result)
                         </marquee>
                      
                     </li> 
-                  
+
+                    
+                 
                   ))
                 ) : (
                   <>Loading...</>
@@ -107,8 +116,10 @@ console.log(result)
                   </tr>
                 </thead>
                 <tbody>
+
                   {charArr ? (
                     <>
+                      
                       {charArr?.map((char, index) => (
                         <tr key={index}>
                           <td>{char.name}</td>
@@ -135,6 +146,7 @@ console.log(result)
                           cm
                         </td>
                       </tr>
+                      
                     </>
                   ) : (
                     <div style={{ color: "#fff" }}>Loading...</div>
